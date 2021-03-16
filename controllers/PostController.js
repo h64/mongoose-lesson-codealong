@@ -31,13 +31,17 @@ router.get('/', async (req, res) => {
 })
 
 // Update
-router.put('/:id', (req, res) => {
-
+router.put('/:id', async (req, res) => {
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, {
+        content: req.body.content
+    })
+    res.json(updatedPost)
 })
 
 // Delete
-router.delete('/:id', (req, res) => {
-
+router.delete('/:id', async (req, res) => {
+    const deletedPost = await Post.findByIdAndDelete(req.params.id)
+    res.json(deletedPost)
 })
 
 
